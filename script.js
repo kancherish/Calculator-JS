@@ -1,6 +1,8 @@
 
 let screen = document.querySelector(".screen");
 
+let ghostScreen = document.querySelector(".ghostScreen");
+
 let numBtns = Array.from(document.querySelectorAll(".num"));
 
 let oprBtns = Array.from(document.querySelectorAll(".opr"));
@@ -20,6 +22,43 @@ let secondN = 'unintialized';
 let operator = "";
 
 let result = 0;
+
+
+function addition(){
+	ghostScreen.textContent = screen.textContent + "+"
+	if(operator!==""){
+			equal();
+	}
+	operator="+";
+	calc();
+	}
+
+function subtract(){
+	ghostScreen.textContent = screen.textContent + "-"
+	if(operator!==""){
+			equal();
+	}
+	operator="-";
+	calc();
+	}
+	
+function multiply(){
+	ghostScreen.textContent = screen.textContent + "*"
+	if(operator!==""){
+			equal();
+	}
+	operator="*";
+	calc();
+	}
+	
+function divide(){
+	ghostScreen.textContent = screen.textContent + "/"
+	if(operator!==""){
+			equal();
+	}
+	operator="/";
+	calc();
+	}
 
 function operate(f,o,s){
 	switch(o){
@@ -102,6 +141,8 @@ function clear(){
 	
 	operator="";
 	
+	ghostScreen.innerHTML = '';
+	
 	}
 
 
@@ -136,37 +177,18 @@ oprBtns.forEach((item)=>{
 			op = e.target.textContent;
 			
 			switch(op){
-			
 					case "+":
-						if(operator!==""){
-								equal();
-							}
-						operator="+";
-						calc();
+						addition();
 						break;
 				    case "-":
-						if(operator!==""){
-								equal();
-							}
-					    operator="-";
-					    calc();
+						subtract();
 						break;
 		            case "X":
-						if(operator!==""){
-								equal();
-							}
-					    operator="*";
-					    calc();
+						multiply();
 						break;
 					case "/":
-						if(operator!==""){
-								equal();
-							}
-					    operator="/";
-					    calc();
-						break;
-					
-				
+						divide();
+						break;						
 			}
 			
 			})
@@ -217,32 +239,16 @@ document.body.addEventListener('keyup',(e)=>{
 			screen.textContent +="0";
 			break;
 		case "+":
-			if(operator!==""){
-					equal();
-				}
-			operator="+";
-			calc();
+			addition();
 			break;
 	    case "-":
-			if(operator!==""){
-					equal();
-				}
-		    operator="-";
-		    calc();
+			subtract();
 			break;
-		case "X":
-			if(operator!==""){
-					equal();
-				}
-		    operator="*";
-		    calc();
+		case "*":
+			multiply();
 			break;
 		case "/":
-			if(operator!==""){
-					equal();
-				}
-		    operator="/";
-		    calc();
+			divide();
 			break;
 		case "C":
 		case "c":
