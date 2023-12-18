@@ -217,20 +217,32 @@ document.body.addEventListener('keyup',(e)=>{
 			screen.textContent +="0";
 			break;
 		case "+":
-			    operator="+";
-			    calc();
+			if(operator!==""){
+					equal();
+				}
+			operator="+";
+			calc();
 			break;
-		case "-":
-			    operator="-";
-			    calc();
+	    case "-":
+			if(operator!==""){
+					equal();
+				}
+		    operator="-";
+		    calc();
 			break;
-		case "*":
-			    operator="*";
-			    calc();
+		case "X":
+			if(operator!==""){
+					equal();
+				}
+		    operator="*";
+		    calc();
 			break;
 		case "/":
-			    operator="/";
-			    calc();
+			if(operator!==""){
+					equal();
+				}
+		    operator="/";
+		    calc();
 			break;
 		case "C":
 		case "c":
