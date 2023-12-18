@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+
+
+*{
+	margin:0px;
+	padding:0px;
+	box-sizing : border-box;
+}
+
+body{
+	
+	background-color:#90EE90;
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
+	height:100vh;
+
+}
+
+
+main{
+	display:flex;
+	justify-content:center;
+
+}
+
+.title{
+	font-family: 'Quicksand', sans-serif;
+	text-align:center;
+	color:white;
+}
+
+.calculator{
+	border:1px solid grey;
+	border-radius:15px;
+	height:70vh;
+	width:60vh;
+	margin:15px;
+	background-color:rgba(0,0,0,0.9);
+	padding:3px;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	gap:8px;
+}
+
+.screen{
+	width:90%;
+	height:12%;
+	background-color:white;
+	font-size:36px;
+	border-radius:10px;
+	display:flex;
+	overflow:hidden;
+	white-space: nowrap;
+}
+
+.buttons{
+	width:100%;
+	display:flex;
+	flex-direction:column;
+	justify-content:space-around;
+	height:90%;
+	
+}
+
+.btn{
+	padding:13px;
+	font-size:22px;
+	background-color:white;
+	border:0px solid black;
+	border-radius:10px;
+	width:60px;
+	text-align:center;
+}
+
+.opr{
+	background-color:#FF9138;
+}
+
+.equal{
+	
+	background-color:#FF9138;
+}
+
+.disable{
+	
+	opacity:0.5;
+
+}
+
+.clr,.del{
+	
+	background-color:rgba(256,256,256,0.9);
+
+}
+
+.col{
+	display:flex;
+	justify-content:space-around;
+}
+
+footer{
+ 
+	background-color:grey;
+	display:flex;
+	justify-content:center;
+	color:white;
+}
