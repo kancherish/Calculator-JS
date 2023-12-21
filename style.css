@@ -28,6 +28,7 @@ main{
 	font-family: 'Quicksand', sans-serif;
 	text-align:center;
 	color:white;
+	background-color:red;
 }
 
 .calculator{
@@ -75,6 +76,7 @@ main{
 	font-size:36px;
 	border-radius:10px;
 	display:flex;
+	justify-content:flex-end;
 	overflow:hidden;
 	white-space: nowrap;
 }

@@ -5,267 +5,170 @@ let ghostScreen = document.querySelector(".ghostScreen");
 
 let numBtns = Array.from(document.querySelectorAll(".num"));
 
-let oprBtns = Array.from(document.querySelectorAll(".opr"));
-
-let delBtn = document.querySelector(".del");
+let oprBtn = Array.from(document.querySelectorAll(".opr"));
 
 let clrBtn = document.querySelector(".clr");
 
-let eqlBtn = document.querySelector(".equal");
-
 let decBtn = document.querySelector(".decimal");
 
-let firstN = 'unintialized';
+let eqlBtn = document.querySelector(".equal");
 
-let secondN = 'unintialized';
-
+let firstN = null;
+let secondN = null;
 let operator = "";
-
-let result = 0;
-
-
-function addition(){
-	ghostScreen.textContent = screen.textContent + "+"
-	if(operator!==""){
-			equal();
-	}
-	operator="+";
-	calc();
-	}
-
-function subtract(){
-	ghostScreen.textContent = screen.textContent + "-"
-	if(operator!==""){
-			equal();
-	}
-	operator="-";
-	calc();
-	}
-	
-function multiply(){
-	ghostScreen.textContent = screen.textContent + "*"
-	if(operator!==""){
-			equal();
-	}
-	operator="*";
-	calc();
-	}
-	
-function divide(){
-	ghostScreen.textContent = screen.textContent + "/"
-	if(operator!==""){
-			equal();
-	}
-	operator="/";
-	calc();
-	}
-
-function operate(f,o,s){
-	switch(o){
-		
-		case "+":
-			return f+s;
-			break;
-		case "-":
-			return f-s;
-			break;
-		case "*":
-			return f*s;
-			break;
-		case "/":
-			return f/s;
-			break;
-		
-		
-		}
-	
-	
-	}
-
-
-function calc(){
-	
-	if(firstN==='unintialized'){
-			firstN = Number(screen.textContent);
-			screen.textContent = '';
-	}else if(secondN==='unintialized'){
-			secondN = Number(screen.textContent);
-			screen.textContent = '';
-			screen.textContent = operate(firstN,operator,secondN);
-	}else{
-			firstN = Number(screen.textContent);
-			screen.textContent = '';
-			secondN = "unintialized";
-			
-		}
-	
-	}
+let result = 0
 
 function dot(){
 	
-	if(screen.textContent.includes(".")){
-		return;
-	}else{
-		screen.textContent+="."
-	}
-	
-	
-	}
-
-function del(){
-	
-	screenTxt = screen.textContent
-		
-	screen.textContent = screen.textContent.substr(0,screen.textContent.length-1)
-		
+		if(screen.textContent.includes(".")){
+				return;
+			}
+		screen.textContent += ".";
 	
 	}
 	
 	
-function equal(){
-	
-	secondN = Number(screen.textContent);
-	screen.textContent = '';
-	result = operate(firstN,operator,secondN);
-	screen.textContent = String(result);
-	operator = "";
-	
+function operate(f,o,s){
+		switch(o){
+			case "+":
+				return f+s;
+			break;
+			case "-":
+				return f-s;
+			break;
+			case "*":
+				return f*s;
+			break;
+			case "/":
+				return f/s;
+			break;
+			
+			}
 	}
 
 function clear(){
-	screen.innerHTML = '';
+	screen.textContent = '';
+	ghostScreen.textContent = '';
+	firstN = null;
+	second = null;
 	result=0;
+	}
 	
-	firstN = "unintialized";
-	secondN = "unitialized";
+function equal(){
 	
-	operator="";
+	calc();
+	ghostScreen.textContent = '';
+	operator = "";
+	screen.textContent = result;
+	result = 0;
+	firstN = null;
+	secondN = null;
 	
-	ghostScreen.innerHTML = '';
+	}
+	
+function calc(){
+	if(firstN===null){
+			firstN=Number(screen.textContent);
+			console.log(firstN)
+			ghostScreen.textContent = firstN + operator;
+			screen.textContent = "";
+	}else{
+		console.log(firstN)
+		secondN = Number(screen.textContent);
+		result = operate(firstN,operator,secondN);
+		ghostScreen.textContent = result + operator;
+		firstN = result
+		screen.textContent = '';
+		}
+	
+	}
+	
+function add(){
+	
+	
+	if(operator!=="+"){
+		calc();
+	}
+	
+	operator="+"
+	calc();
+	}
+
+function sub(){
+	
+	if(operator!=="-"){
+		calc();
+	}
+	operator="-";
+	calc();
+	
+	}
+	
+
+function multi(){
+	
+	if(operator!=="*"){
+		calc();
+	}
+	operator="*";
+	calc();
 	
 	}
 
 
-delBtn.addEventListener('click',e=>{	
-		del();
+function div(){
+	
+	if(operator!=="*"){
+		calc();
+	}
+	operator="/";
+	calc();
+	
+	}
+
+
+clrBtn.addEventListener('click',(e)=>{
+	clear();
 	});
 	
-	
-clrBtn.addEventListener('click',e=>{
+eqlBtn.addEventListener('click',(e)=>{
+		equal();
+	});
 
-		clear();
+numBtns.forEach((btn)=>{
+	
+	btn.addEventListener('click',(e)=>{
+		
+		screen.textContent += e.target.textContent;
+		
+		});
 	
 	});
 
-
-eqlBtn.addEventListener('click',e=>{
-	
-	equal();
-	
+decBtn.addEventListener('click',(e)=>{
+		dot();
 	});
 	
-decBtn.addEventListener('click',e=>{
+oprBtn.forEach(btn=>{
 	
-	dot();
-	
-	})
-
-
-oprBtns.forEach((item)=>{
-		item.addEventListener('click',(e)=>{
+	btn.addEventListener('click',(e)=>{
+		operation = e.target.textContent;
+		switch(operation){
 			
-			op = e.target.textContent;
+			case "+":
+				add();
+			break;
+			case "-":
+				sub();
+			break;
+			case "X":
+				multi();
+			break;
+			case "/":
+				div();
+			break;
 			
-			switch(op){
-					case "+":
-						addition();
-						break;
-				    case "-":
-						subtract();
-						break;
-		            case "X":
-						multiply();
-						break;
-					case "/":
-						divide();
-						break;						
 			}
-			
-			})
-	
-	})
-
-
-numBtns.forEach((item)=>{
-		item.addEventListener('click',(e)=>{
-			 screen.textContent += e.target.textContent;
-			})
 	})
 	
-
-document.body.addEventListener('keyup',(e)=>{
-	
-	key = e.key
-	
-	switch(key){
-		case "1":
-			screen.textContent +="1";
-			break;
-		case "2":
-			screen.textContent +="2";
-			break;
-		case "3":
-			screen.textContent +="3";
-			break;
-		case "4":
-			screen.textContent +="4";
-			break;
-		case "5":
-			screen.textContent +="5";
-			break;
-		case "6":
-			screen.textContent +="6";
-			break;
-		case "7":
-			screen.textContent +="7";
-			break;
-		case "8":
-			screen.textContent +="8";
-			break;
-		case "9":
-			screen.textContent +="9";
-			break;
-		case "0":
-			screen.textContent +="0";
-			break;
-		case "+":
-			addition();
-			break;
-	    case "-":
-			subtract();
-			break;
-		case "*":
-			multiply();
-			break;
-		case "/":
-			divide();
-			break;
-		case "C":
-		case "c":
-			clear();
-			break;
-		case "Backspace":
-			del();
-			break;
-		case "Delete":
-			del();
-			break;
-		case "Enter":
-			equal();
-			break;
-		case ".":
-			dot();
-			break;
-		}
-	
-	})
+	});
