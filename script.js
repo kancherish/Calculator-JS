@@ -13,6 +13,8 @@ let decBtn = document.querySelector(".decimal");
 
 let eqlBtn = document.querySelector(".equal");
 
+let delBtn = document.querySelector(".del");
+
 let firstN = null;
 let secondN = null;
 let operator = "";
@@ -118,7 +120,7 @@ function multi(){
 
 function div(){
 	
-	if(operator!=="*"){
+	if(operator!=="/"){
 		calc();
 	}
 	operator="/";
@@ -126,6 +128,12 @@ function div(){
 	
 	}
 
+
+delBtn.addEventListener('click',(e)=>{
+	
+	screen.textContent = screen.textContent.substring(0,screen.textContent.length-1)
+	
+	});
 
 clrBtn.addEventListener('click',(e)=>{
 	clear();
