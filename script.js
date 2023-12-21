@@ -52,7 +52,7 @@ function clear(){
 	screen.textContent = '';
 	ghostScreen.textContent = '';
 	firstN = null;
-	secondN = null;
+	second = null;
 	result=0;
 	}
 	
