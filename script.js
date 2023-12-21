@@ -71,7 +71,7 @@ function equal(){
 function calc(){
 	if(firstN===null){
 			firstN=Number(screen.textContent);
-			console.log(firstN)
+			
 			ghostScreen.textContent = firstN + operator;
 			screen.textContent = "";
 	}else{
@@ -146,6 +146,10 @@ eqlBtn.addEventListener('click',(e)=>{
 numBtns.forEach((btn)=>{
 	
 	btn.addEventListener('click',(e)=>{
+		
+		if(screen.textContent.length>12){
+				return
+			}
 		
 		screen.textContent += e.target.textContent;
 		
